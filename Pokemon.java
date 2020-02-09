@@ -1,0 +1,7 @@
+/**
+ * Pokemon
+ */
+public class Pokemon {
+
+    
+}
