@@ -1,22 +1,10 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class PokemonGame{
-
-    public static void main(String [] args){           
-        String options;
-        Pokemon p = new Pokemon();
-        p.pageIndex();
-        
-        options = p.pageOption();
-
-        if(options.equals("1")){
-            p.pageStart();
-            p.pageStatus();  
- 
-         }
-         else if(options.equals("2")){
-            p.pageQuit();
-
-         }
+public class PokemonGame {
+    public static void main(String[] args){
+        System.out.println("---Wellcome to Pokemon Game---");
+        Trainer t = new Trainer();
+        t.play();
+        System.out.println("---See you---");
     }
 }
