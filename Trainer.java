@@ -5,7 +5,7 @@ public class Trainer {
     private Scanner sc;
     public Trainer(){
         bag = new ArrayList<Pokemon>();
-        bag.add(new Mimirol("Mimirol of Alee"));
+        bag.add(new Mimirol("Your Mimirol"));
         sc = new Scanner(System.in);
     }
 
