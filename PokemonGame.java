@@ -5,6 +5,6 @@ public class PokemonGame {
         System.out.println("---Wellcome to Pokemon Game---");
         Trainer t = new Trainer();
         t.play();
-        System.out.println("---See you---");
+        System.out.println("\n\n---See you---");
     }
 }

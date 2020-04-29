@@ -13,48 +13,74 @@ public class Trainer {
         String cmd = "";
 
         do{
-            System.out.print("Enter command: ");
+            System.out.print("\n\nEnter command: ");
             cmd = sc.nextLine();
 
             if(cmd.equals("show")){
-                showPokemon();
+                System.out.println("\n\nPokemon in bag: ");
+                showPokemon(bag);
             }
             else if(cmd.equals("chase")){
                 chasePokemon();
             }
-        }while(!cmd.equals("q"));
+        }while(!cmd.equals("quit"));
     }
 
     public void chasePokemon(){
         System.out.println("Chase Pokemons!");
-        ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
-        int pokemonNum = (int)(Math.random() * 3);
-        for(int i=0 ; i<pokemonNum ; i++){
-            int type = (int)(Math.random() * 2);
-            if(type == 0)
-               pokemons.add(new Mimirol("mimirol"));
-            else if(type == 1)
-                pokemons.add(new Togepi("togepi"));
+        ArrayList<Pokemon> pokemons = PokemonRandomizer.getPokemons(5);
+
+        System.out.println("\n\n---OMG! Found Pokemon!!---");
+        int no = 0;
+        showPokemon(pokemons);
+        
+        System.out.print("\n\nSelect Pokemon number or Run(-1): ");
+        no = sc.nextInt();
+        if(no < 0){
+           sc.nextLine();
+           return;
         }
 
-        System.out.println("OMG! Found it!!");
-        int num = 0;
-        for(Pokemon p: pokemons){
-            System.out.println("No. " + num + " " + p.getName());
-            num++;
+        Pokemon wildPokemon = pokemons.get(no);
+        
+        System.out.println("\n\n---Pokemon in bag---");
+        showPokemon(bag);
+        System.out.print("\n\nSelect Pokemon in bag: ");
+        
+        no = sc.nextInt();
+        sc.nextLine();
+        Pokemon myPokemon = bag.get(no);
+
+        boolean isWin = false;
+        do {
+            myPokemon.attack(wildPokemon);
+            if(wildPokemon.getHp() == 0){
+                isWin = true;
+                break;
+            }
+            else{
+                wildPokemon.attack(myPokemon);
+                if(myPokemon.getHp() == 0){
+                    isWin = false;
+                    break;
+                }
+            }
+        }while(true);
+
+        if(isWin){        
+            System.out.println("You  win and cath it");
+            bag.add(wildPokemon);
         }
-
-        System.out.print("You  catch: ");
-        num = sc.nextInt();
-
-        bag.add(pokemons.get(num));
-
+        else{
+            System.out.println(wildPokemon.getName() + " win and it's gone!");
+        }
     }
 
-    public void showPokemon(){
-        System.out.println("Pokemon in bag");
-        for(Pokemon p: bag) {
-            System.out.println(p);
+    public void showPokemon(ArrayList<Pokemon> pokemons){
+        int number = 0;
+        for(Pokemon p: pokemons) {
+            System.out.println("" + number + " " + p + " HP: " + p.getHp());
+            number++;
         }
     }
 }
