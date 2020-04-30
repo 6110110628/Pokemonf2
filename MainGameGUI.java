@@ -17,9 +17,12 @@ public class MainGameGUI extends JFrame {
 
         JButton firstPokemon = new JButton(trainer.getBag().get(0).getName() + " Status");
 
+        JButton chasePokemon = new JButton("Chase Pokemon");
+
         c.add(trainerNameLabel);
         c.add(pokemonName);
         c.add(firstPokemon);
+        c.add(chasePokemon);
 
         c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));
 
@@ -29,6 +32,12 @@ public class MainGameGUI extends JFrame {
         }
 
         pokemonName.setText(pName);
+
+        chasePokemon .addActionListener(new ActionListener(){
+            public void  actionPerformed(ActionEvent e){
+                
+            }
+        });
 
         firstPokemon .addActionListener(new ActionListener(){
             public void  actionPerformed(ActionEvent e){
